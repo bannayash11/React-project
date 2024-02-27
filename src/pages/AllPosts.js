@@ -15,16 +15,18 @@ function AllPosts() {
   return (
 <main className="container__main-page main__content">
 <div className="spacer__container">
-    <div className='all-posts'>
+   
         <Container>
-            
+       
                 {posts.map((post) => (
+                 <div className='all-posts'>
                     <div key={post.$id} className=''>
                         <PostCard {...post} />
                     </div>
+                </div>
                 ))}
             </Container>
-    </div>
+
 </div>
 </main>    
   )
