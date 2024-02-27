@@ -536,16 +536,18 @@ svg:not(:root) {
 
 .all-posts img.rounded-xl {
   width: 100%;
+  height: 299px;
   border-radius: 17px 17px 1px 0px;
 }
 
-
 .all-posts {
-  width: 25%;
+  margin-left: 3%;
+  width: 30%;
   display: inline-table;
   border: 1px solid;
   border-radius: 21px;
 }
+
 
 h2.text-xl.font-bold {
   padding-left: 12px;
