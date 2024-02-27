@@ -26,17 +26,19 @@ export class AuthService {
             throw error;
         }
     }
-
-    async login({email, password}) {
-        try {
-            await account.createEmailSession(email, password);
-        } catch (error) {
-            throw error;
-        }
-    }
-
    
+const login = async (user) => {
+  setError(null);
+  try {
+    await account.createEmailSession(user.email, user.password);
+  } catch (error) {
+    console.log(error);
+    setError(error.message);
+    throw error; // Error that will be caught in Login.js
+  }
+};
 
+    
 
     async getCurrentUser() {
         try {
