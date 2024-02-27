@@ -14,23 +14,14 @@ export default function Post() {
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
 
-   useEffect(() => {
-    if (slug) {
-        appwriteService.getPost(slug).then((post) => {
-            console.log("Post:", post);
-            console.log("UserData:", userData);
-
-            if (post) {
-                setPost(post);
-                console.log("Is Author:", post.userId === userData.$id);
-            } else {
-                navigate("/");
-            }
-        });
-    } else {
-        navigate("/");
-    }
-}, [slug, navigate, userData]);
+    useEffect(() => {
+        if (slug) {
+            appwriteService.getPost(slug).then((post) => {
+                if (post) setPost(post);
+                else navigate("/");
+            });
+        } else navigate("/");
+    }, [slug, navigate]);
 
     const deletePost = () => {
         appwriteService.deletePost(post.$id).then((status) => {
@@ -49,7 +40,7 @@ export default function Post() {
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img src={appwriteService.getFilePreview(post.featuredImage)} alt={post.title} className="rounded-xl"/>
 
-                    {isAuthor (
+                    {isAuthor && (
                         <div className="absolute right-6 top-6">
                             <Link to={`/edit-post/${post.$id}`}>
                                 <Button bgColor="bg-green-500" className="mr-3">
