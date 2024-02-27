@@ -546,6 +546,7 @@ svg:not(:root) {
   display: inline-table;
   border: 1px solid;
   border-radius: 21px;
+  margin-bottom: 5%;
 }
 
 
