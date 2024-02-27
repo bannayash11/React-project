@@ -50,15 +50,16 @@ export default function PostForm({ post }) {
     };
 
     const slugTransform = useCallback((value) => {
-        if (value && typeof value === "string")
-            return value
-                .trim()
-                .toLowerCase()
-                .replace(/[^a-zA-Z\d\s]+/g, "-")
-                .replace(/\s/g, "-");
-
+        if (value && typeof value === "string") {
+            const trimmedSlug = value.trim().toLowerCase().replace(/[^a-zA-Z\d\s]+/g, "-").replace(/\s/g, "-");
+    
+            // Enforce a character limit of 36 for the slug
+            return trimmedSlug.slice(0, 36);
+        }
+    
         return "";
     }, []);
+    
 
     React.useEffect(() => {
         const subscription = watch((value, { name }) => {
