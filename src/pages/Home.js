@@ -15,23 +15,7 @@ function Home() {
     // }, [])
 
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-          try {
-            const { documents } = await appwriteService.database.listDocuments(
-              "65cdd9b9419fa38d4743", // Replace with your actual collection ID
-              1, // Page number
-              100 // Items per page
-            );
-    
-            setPosts(documents);
-          } catch (error) {
-            console.error("Error fetching posts:", error);
-          }
-        };
-    
-        fetchPosts();
-      }, []);
+  
 
       
 
