@@ -14,14 +14,23 @@ export default function Post() {
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
 
-    useEffect(() => {
-        if (slug) {
-            appwriteService.getPost(slug).then((post) => {
-                if (post) setPost(post);
-                else navigate("/");
-            });
-        } else navigate("/");
-    }, [slug, navigate]);
+   useEffect(() => {
+    if (slug) {
+        appwriteService.getPost(slug).then((post) => {
+            console.log("Post:", post);
+            console.log("UserData:", userData);
+
+            if (post) {
+                setPost(post);
+                console.log("Is Author:", post.userId === userData.$id);
+            } else {
+                navigate("/");
+            }
+        });
+    } else {
+        navigate("/");
+    }
+}, [slug, navigate, userData]);
 
     const deletePost = () => {
         appwriteService.deletePost(post.$id).then((status) => {
